@@ -1,0 +1,16 @@
+.flexbox {
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: stretch; 
+
+  }
+  
+.flexitem {
+    flex: 1;
+    background-color: pink;
+  }
+  
+  h3 {
+    font-weight: bold;
+  }

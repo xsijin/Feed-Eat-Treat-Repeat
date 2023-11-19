@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import Food from "./Food";
-import Nutrition from "./Nutrition";
+import ViewFood from "./ViewFood";
+import ViewNutrition from "./ViewNutrition";
 
 
 
@@ -13,10 +13,10 @@ function App() {
   return (
     <div className="container">
       <div className="item">
-        <Food />
+        <ViewFood />
       </div>
       <div className="item">
-        <Nutrition />
+        <ViewNutrition />
     </div></div>
   );
 }

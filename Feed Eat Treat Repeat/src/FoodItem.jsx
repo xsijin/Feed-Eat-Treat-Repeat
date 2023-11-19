@@ -1,9 +1,9 @@
-export default function Meal() {
+export default function FoodItem() {
     // Application logic, etc. goes here
     return (
       <>
 
-Breakfast
+Salmon-ingredient
 
 </>
     );

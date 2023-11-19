@@ -1,0 +1,21 @@
+meta {
+  name: Meal Record
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://api.airtable.com/v0/app0oXVuGeHq2HRYJ/tbl7xnuDoU34SL2df?fields%5B%5D=Date+of+Entry&fields%5B%5D=Meal+Type&fields%5B%5D=Ingredient+Name+(from+Food+Item)
+  body: none
+  auth: bearer
+}
+
+query {
+  fields%5B%5D: Date+of+Entry
+  fields%5B%5D: Meal+Type
+  fields%5B%5D: Ingredient+Name+(from+Food+Item)
+}
+
+auth:bearer {
+  token: patSPU1OYQlMZDonM.94247f8b517d10f9a7b08f0453a524ff90ac510b578338ad088f2096ff065db8
+}

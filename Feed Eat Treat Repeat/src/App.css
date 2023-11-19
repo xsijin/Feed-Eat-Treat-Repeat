@@ -1,3 +1,4 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -7,17 +8,20 @@
 
 .container {
   display: flex; 
+  flex-direction: column;
   justify-content: space-between; 
-  align-items: center; 
   background-color: bisque;
+  align-items: flex-start;
+  width: 300px;
+  align-items: stretch;
 }
 
 .item {
   flex: 1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+
+h2 {
+  font-size: 1em;
+  font-weight: bold;
 }
