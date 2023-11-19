@@ -20,8 +20,46 @@
   flex: 1;
 }
 
+.item2 {
+  flex: 1;
+  background-color: white;
+}
+
 
 h2 {
-  font-size: 1em;
+  font-size: 1.4em;
   font-weight: bold;
 }
+
+.line {
+  border: none;
+  background-color: black;
+  height: 1px;
+}
+
+.whitebg {
+  background-color: white;
+}
+
+.serving {
+font-size: 0.8em;
+}
+
+.unavail {
+  font-size: 1em;
+  padding: 10px;
+  }
+
+@media (min-width: 768px) {
+
+  .container {
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between; 
+    background-color: bisque;
+    align-items: flex-start;
+    width: 600px;
+    align-items: stretch;
+  }
+}
+

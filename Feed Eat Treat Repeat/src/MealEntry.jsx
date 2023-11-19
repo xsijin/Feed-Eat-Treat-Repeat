@@ -1,27 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, ButtonGroup } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/react";
 
-export default function MealEntry() {
-  const [enterMeal, setEnterMeal] = useState("");
+export default function MealEntry(props) {
+    const [NutritionTitle, setNutritionTitle] = useState("");
 
-  function handleAddMeal() {
-    e.preventDefault();
-    if (mealType === "breakfast") {
-      setBreakfast(enterMeal);
-    } else if (mealType === "lunch") {
-      setLunch(enterMeal);
-    } else if (mealType === "dinner") {
-      setDinner(enterMeal);
-    } else if (mealType === "snack") {
-      setSnack(enterMeal);
-    }
-    setEnterMeal("");
-  }
+    const handleSubmit = (e) => {
+        console.log("Form - handleSubmit - NutritionTitle", NutritionTitle);
+        e.preventDefault();
+        props.handleSubmit(NutritionTitle);
+        setNutritionTitle("");
+      };
+    
+      const handleChange = (e) => {
+        console.log("handleChange clicked");
+        const title = e.target.value;
+        setNutritionTitle(title);
+      };
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <Input
           placeholder="Select Date and Time"
           size="md"
@@ -29,8 +28,8 @@ export default function MealEntry() {
           size="xs"
         />
         <Input
-          value={enterMeal}
-          onChange={(evt) => setEnterMeal(evt.target.value)}
+          value={NutritionTitle}
+          onChange={handleChange}
           placeholder="Enter food"
           size="xs"
           variant="outline"
