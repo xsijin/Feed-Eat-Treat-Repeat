@@ -78,3 +78,25 @@ li {
   margin-left: 20px;
 }
 
+.info {
+  background-color: black;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 8px;
+  font-weight: bold;
+  width: 12px;
+  border-radius: 50%;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  transition: all 0.5s;
+  transition-duration: 0.4s;
+  vertical-align: super;
+  font-family:'Monospace';
+}
+
+.info:hover {
+  background-color: #04AA6D; /* Green */
+  color: white;
+}

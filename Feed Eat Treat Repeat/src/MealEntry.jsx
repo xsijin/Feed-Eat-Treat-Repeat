@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/react";
 
 export default function MealEntry(props) {
@@ -22,17 +22,13 @@ export default function MealEntry(props) {
     <div>
       <form onSubmit={handleSubmit}>
         <Input
-          placeholder="Select Date and Time"
-          size="md"
-          type="datetime-local"
-          size="xs"
-        />
-        <Input
           value={NutritionTitle}
           onChange={handleChange}
           placeholder="Enter food"
-          size="xs"
-          variant="outline"
+          size="sm"
+          focusBorderColor='pink.400'
+          style={{ width: '200px' }}
+          variant='flushed'
         />
 
         <Button

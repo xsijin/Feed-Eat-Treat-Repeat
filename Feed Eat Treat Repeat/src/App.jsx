@@ -7,6 +7,12 @@ import ViewNutrition from "./ViewNutrition";
 function App() {
   const [NutritionData, setNutritionData] = useState("");
   const [NutritionTitle, setNutritionTitle] = useState("100g salmon");
+  
+  const foodList = [
+    'Have Fun',
+    'Learn React',
+    'Learn the MERN-Stack'
+  ];
 
   useEffect(() => {
     const NutritionUrl = `https://api.edamam.com/api/nutrition-data?app_id=3791ca98&app_key=99274120c12f12224b802f6c3efb5407&nutrition-type=logging&ingr=100g%20${NutritionTitle}`;
@@ -30,7 +36,7 @@ function App() {
   return (
     <div className="container">
       <div className="item">
-        <ViewFood handleSubmit={handleSubmit} />
+        <ViewFood handleSubmit={handleSubmit} foodList={foodList}/>
       </div>
       <div className="item2">
          
@@ -43,4 +49,3 @@ function App() {
 export default App;
 
 // airtable
-// 3rd party API

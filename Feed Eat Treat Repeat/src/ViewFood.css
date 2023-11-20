@@ -11,6 +11,13 @@
     background-color: pink;
   }
   
-  h3 {
+h3 {
     font-weight: bold;
+  }
+
+.fooditem {
+    list-style-type: disc;
+    text-align: left;
+    margin-left: 30px;
+    padding-left: 0;
   }
