@@ -53,6 +53,7 @@ export default function ViewFood({ handleSubmit }) {
               mealType={food.mealtype}
               date={food.date}
               foodItem={food.foodItem}
+              handleSubmit={handleSubmit}
             />
           ))}
         </ul>
@@ -66,6 +67,7 @@ export default function ViewFood({ handleSubmit }) {
               mealType={food.mealtype}
               date={food.date}
               foodItem={food.foodItem}
+              handleSubmit={handleSubmit}
             />
           ))}
         </ul>
@@ -79,6 +81,7 @@ export default function ViewFood({ handleSubmit }) {
               mealType={food.mealtype}
               date={food.date}
               foodItem={food.foodItem}
+              handleSubmit={handleSubmit}
             />
           ))}
         </ul>
@@ -93,6 +96,7 @@ export default function ViewFood({ handleSubmit }) {
               mealType={food.mealtype}
               date={food.date}
               foodItem={food.foodItem}
+              handleSubmit={handleSubmit}
             />
           ))}
         </ul>

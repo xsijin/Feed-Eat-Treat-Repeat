@@ -33,7 +33,6 @@ export default function MealEntry(props) {
 
         <Button
           type="submit"
-          onClick={(e) => handleAddMeal(e, "breakfast")}
           colorScheme="pink"
           size="xs"
         >
