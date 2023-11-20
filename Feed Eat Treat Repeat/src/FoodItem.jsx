@@ -4,7 +4,6 @@ export default function FoodItem({ mealType, date, foodItem, handleSubmit }) {
     const [NutritionTitle, setNutritionTitle] = useState("");
 
     const handleClick = (clickedItem) => {
-        console.log("Form - handleSubmit - NutritionTitle", NutritionTitle);
         handleSubmit(clickedItem);
         setNutritionTitle(clickedItem);
       };

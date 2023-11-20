@@ -29,7 +29,7 @@ function App() {
   }, [NutritionTitle]);
 
   const handleSubmit = (title) => {
-    console.log("App - handleSubmit - title", title);
+    console.log("App - handleSubmit - food:", title);
     setNutritionTitle(title);
   };
 

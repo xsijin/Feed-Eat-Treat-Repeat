@@ -4,35 +4,82 @@ export default function ViewNutrition({ nutrition }) {
     return <div>No Nutrition Information available.</div>;
   }
 
-  const foodItem = nutrition.ingredients[0].parsed[0].food;
-  const calories = nutrition.calories.toFixed(0) + " kcal";
-  const totalFat =
-    nutrition.totalNutrients.FAT.quantity.toFixed(1) + nutrition.totalNutrients.FAT.unit;
-  const satFat =
-    nutrition.totalNutrients.FASAT.quantity.toFixed(1) +
-    nutrition.totalNutrients.FASAT.unit;
-  const protein =
-    nutrition.totalNutrients.PROCNT.quantity.toFixed(1) +
-    nutrition.totalNutrients.PROCNT.unit;
-  const carbs =
-    nutrition.totalNutrients.CHOCDF.quantity.toFixed(1) +
-    nutrition.totalNutrients.CHOCDF.unit;
+  // Format number to round decimals up when at midpoint i.e. 3.05 -> 3.1
+  function formatNumber(number) {
+    if (Number.isInteger(number)) {
+      return number.toFixed(0); // For whole numbers, rounds to integers
+    } else {
+      // Multiply by 10, round to the nearest integer, and then divide by 10 to keep one decimal place
+      return (Math.round(number * 10) / 10).toFixed(1);
+    }
+  }
+
+  const foodItem = nutrition.ingredients[0]?.parsed[0]?.food || "-";
+  const calories = nutrition.calories
+    ? `${formatNumber(nutrition.calories)} kcal`
+    : "-";
+  const totalFat = nutrition.totalNutrients.FAT
+    ? `${formatNumber(nutrition.totalNutrients.FAT.quantity)} ${
+        nutrition.totalNutrients.FAT.unit
+      }`
+    : "-";
+  const satFat = nutrition.totalNutrients.FASAT
+    ? `${formatNumber(nutrition.totalNutrients.FASAT.quantity)} ${
+        nutrition.totalNutrients.FASAT.unit
+      }`
+    : "-";
+  const protein = nutrition.totalNutrients.PROCNT
+  ? `${formatNumber(nutrition.totalNutrients.PROCNT.quantity)} ${
+      nutrition.totalNutrients.PROCNT.unit
+    }`
+  : "-";
+  const carbs = nutrition.totalNutrients.CHOCDF
+  ? `${formatNumber(nutrition.totalNutrients.CHOCDF.quantity)} ${
+      nutrition.totalNutrients.CHOCDF.unit
+    }`
+      : "-";
   const fiber =
-    nutrition.totalNutrients.FIBTG.quantity.toFixed(1) +
-    nutrition.totalNutrients.FIBTG.unit;
+  nutrition.totalNutrients.FIBTG
+  ? `${formatNumber(nutrition.totalNutrients.FIBTG.quantity)} ${
+      nutrition.totalNutrients.FIBTG.unit
+    }`
+      : "-";
   const sugar =
-    nutrition.totalNutrients.SUGAR.quantity.toFixed(1) +
-    nutrition.totalNutrients.SUGAR.unit;
+  nutrition.totalNutrients.SUGAR
+  ? `${formatNumber(nutrition.totalNutrients.SUGAR.quantity)} ${
+      nutrition.totalNutrients.SUGAR.unit
+    }`
+      : "-";
   const sodium =
-    nutrition.totalNutrients.NA.quantity.toFixed(1) + nutrition.totalNutrients.NA.unit;
+  nutrition.totalNutrients.NA
+  ? `${formatNumber(nutrition.totalNutrients.NA.quantity)} ${
+      nutrition.totalNutrients.NA.unit
+    }`
+      : "-";
   const iron =
-    nutrition.totalNutrients.FE.quantity.toFixed(1) + nutrition.totalNutrients.FE.unit;
+  nutrition.totalNutrients.FE
+  ? `${formatNumber(nutrition.totalNutrients.FE.quantity)} ${
+      nutrition.totalNutrients.FE.unit
+    }`
+      : "-";
   const calcium =
-    nutrition.totalNutrients.CA.quantity.toFixed(1) + nutrition.totalNutrients.CA.unit;
+  nutrition.totalNutrients.CA
+  ? `${formatNumber(nutrition.totalNutrients.CA.quantity)} ${
+      nutrition.totalNutrients.CA.unit
+    }`
+      : "-";
   const vitaD =
-    nutrition.totalNutrients.VITD.quantity.toFixed(1) + nutrition.totalNutrients.VITD.unit;
+  nutrition.totalNutrients.VITD
+  ? `${formatNumber(nutrition.totalNutrients.VITD.quantity)} ${
+      nutrition.totalNutrients.VITD.unit
+    }`
+      : "-";
   const potassium =
-    nutrition.totalNutrients.K.quantity.toFixed(1) + nutrition.totalNutrients.K.unit;
+  nutrition.totalNutrients.K
+  ? `${formatNumber(nutrition.totalNutrients.K.quantity)} ${
+      nutrition.totalNutrients.K.unit
+    }`
+      : "-";
 
   return (
     <>
@@ -43,30 +90,30 @@ export default function ViewNutrition({ nutrition }) {
           <hr className="line" />
           <div className="serving">per 100g of {foodItem}</div>
           <hr className="line" />
-          <b>Calories/Energy:</b> {calories}
+          <b>Calories/Energy</b> {calories}
           <hr className="line" />
           <ul>
-            <b>Total Fat:</b> {totalFat}
-            <li>Saturated Fat: {satFat}</li>
+            <b>Total Fat</b> {totalFat}
+            <li>Saturated Fat {satFat}</li>
           </ul>
           <hr className="line" />
-          <b>Protein:</b> {protein}
+          <b>Protein</b> {protein}
           <hr className="line" />
           <ul>
-            <b>Total Carbohydrate:</b> {carbs}
-            <li>Dietary Fiber: {fiber}</li>
-            <li>Total Sugars: {sugar}</li>
+            <b>Total Carbohydrate</b> {carbs}
+            <li>Dietary Fiber {fiber}</li>
+            <li>Total Sugars {sugar}</li>
           </ul>
           <hr className="line" />
-          <b>Sodium:</b> {sodium}
+          <b>Sodium</b> {sodium}
           <hr className="line" />
-          Iron: {iron}
+          Iron {iron}
           <hr className="line" />
-          Calcium: {calcium}
+          Calcium {calcium}
           <hr className="line" />
-          Vitamin D: {vitaD}
+          Vitamin D {vitaD}
           <hr className="line" />
-          Potassium: {potassium}
+          Potassium {potassium}
         </div>
       </div>
     </>
