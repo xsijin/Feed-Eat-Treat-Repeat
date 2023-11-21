@@ -100,3 +100,37 @@ li {
   background-color: #04AA6D; /* Green */
   color: white;
 }
+
+.clear {
+  background-color: black;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  padding: 3px;
+  font-weight: bold;
+  border-radius: 50%;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  transition: all 0.5s;
+  transition-duration: 0.4s;
+  vertical-align: super;
+  font-family:'Monospace';
+}
+
+.clear:hover {
+  background-color: #04AA6D; /* Green */
+  color: white;
+}
+
+.intro {
+  list-style-type: disc;
+  margin-left: 30px;
+}
+
+.small {
+  font-size: 0.8em;
+  text-align: left;
+  margin-left: 10px;
+}

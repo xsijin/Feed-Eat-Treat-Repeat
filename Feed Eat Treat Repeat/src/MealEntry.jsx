@@ -4,31 +4,34 @@ import { Input } from "@chakra-ui/react";
 
 export default function MealEntry(props) {
     const [NutritionTitle, setNutritionTitle] = useState("");
+    const [newFoodItem, setNewFoodItem] = useState("")
 
-    const handleSubmit = (e) => {
-        console.log("Form - handleSubmit - NutritionTitle", NutritionTitle);
+    const handleAddFood = (e) => {
+        console.log("Form - handleSubmit - newFoodItem", newFoodItem);
         e.preventDefault();
-        props.handleSubmit(NutritionTitle);
-        setNutritionTitle("");
+        props.addFoodItem(newFoodItem);
+        setNewFoodItem("");
       };
     
       const handleChange = (e) => {
         console.log("handleChange clicked");
-        const title = e.target.value;
-        setNutritionTitle(title);
+        const foodInput = e.target.value;
+        setNewFoodItem(foodInput);
       };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleAddFood}>
         <Input
-          value={NutritionTitle}
+          value={newFoodItem}
           onChange={handleChange}
           placeholder="Enter food"
           size="sm"
           focusBorderColor='pink.400'
-          style={{ width: '200px' }}
+          style={{ width: '250px' }}
           variant='flushed'
+          required
+  pattern=".{2,}"
         />
 
         <Button
@@ -36,7 +39,7 @@ export default function MealEntry(props) {
           colorScheme="pink"
           size="xs"
         >
-          Add Breakfast
+          Add
         </Button>
       </form>
     </div>

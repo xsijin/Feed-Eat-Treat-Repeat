@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function FoodItem({ mealType, date, foodItem, handleSubmit }) {
+export default function FoodItem({ foodItem, handleSubmit }) {
     const [NutritionTitle, setNutritionTitle] = useState("");
 
     const handleClick = (clickedItem) => {
@@ -10,15 +10,15 @@ export default function FoodItem({ mealType, date, foodItem, handleSubmit }) {
 
     return (
       <>
-      {foodItem.map((item, index) => (
-        <li className="fooditem" key={index}>{item} <button
+     <li className="fooditem">
+      {foodItem} <button
         className="info"
-        value={item}
-        onClick={() => handleClick(item)}
+        value={foodItem}
+        onClick={() => handleClick(foodItem)}
       >
         i
-      </button></li>
-      ))}
+      </button>
+    </li>
 </>
     );
 }

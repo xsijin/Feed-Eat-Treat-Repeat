@@ -6,13 +6,13 @@ import ViewNutrition from "./ViewNutrition";
 
 function App() {
   const [NutritionData, setNutritionData] = useState("");
-  const [NutritionTitle, setNutritionTitle] = useState("100g salmon");
-  
-  const foodList = [
-    'Have Fun',
-    'Learn React',
-    'Learn the MERN-Stack'
-  ];
+  const [NutritionTitle, setNutritionTitle] = useState("");
+  const [foodList, setFoodList] = useState(["Greek Yogurt", "Almonds", "Carrot Sticks"]);
+
+  const clearNutrition = () => {
+    setNutritionTitle("");
+    // Additional clearing steps if needed
+  };
 
   useEffect(() => {
     const NutritionUrl = `https://api.edamam.com/api/nutrition-data?app_id=3791ca98&app_key=99274120c12f12224b802f6c3efb5407&nutrition-type=logging&ingr=100g%20${NutritionTitle}`;
@@ -33,14 +33,36 @@ function App() {
     setNutritionTitle(title);
   };
 
+function addFoodItem(newFoodItem) {
+  setFoodList([...foodList, newFoodItem]);
+}
+
   return (
     <div className="container">
       <div className="item">
-        <ViewFood handleSubmit={handleSubmit} foodList={foodList}/>
+        <ViewFood handleSubmit={handleSubmit} foodList={foodList} addFoodItem={addFoodItem}/>
       </div>
       <div className="item2">
          
-        {NutritionData.calories && NutritionData.totalWeight ? (<ViewNutrition nutrition={NutritionData} />) : <div className="unavail">No Nutrition Information available.</div>}
+        {NutritionData.calories && NutritionData.totalWeight ? (<ViewNutrition nutrition={NutritionData} clearNutrition={clearNutrition} />) : <div className="unavail">No Nutrition Information available.
+        <br />
+        <br />
+        <div className="small">
+        Please click on the information bubble <button
+        className="info"
+      >
+        i
+      </button> to view nutrition information. 
+      
+      <br /><br /><ul>Possible reasons: 
+      
+      <li className="intro">No food item selected.</li>
+      <li className="intro">Food item is not specific enough. Instead of "juice", try entering "apple juice".</li>
+      <li className="intro">No data available for food item.</li>
+      </ul>
+      <br />Nutrition Analysis API powered by <a href="https://www.edamam.com/">Edamam</a>.</div>
+        
+        </div>}
       
     </div></div>
   );

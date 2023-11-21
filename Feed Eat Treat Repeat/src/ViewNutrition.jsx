@@ -1,8 +1,13 @@
-export default function ViewNutrition({ nutrition }) {
+export default function ViewNutrition({ nutrition, clearNutrition }) {
   // Check if nutrition exists to avoid accessing undefined properties
   if (!nutrition || !nutrition.totalNutrients) {
     return <div>No Nutrition Information available.</div>;
   }
+
+  const handleClear = () => {
+    // Call the clearNutrition function to reset the nutrition state
+    clearNutrition();
+  };
 
   // Format number to round decimals up when at midpoint i.e. 3.05 -> 3.1
   function formatNumber(number) {
@@ -115,7 +120,9 @@ export default function ViewNutrition({ nutrition }) {
           <hr className="line" />
           Potassium {potassium}
         </div>
-      </div>
+<div style={{ textAlign: 'right' }}>
+        <button className="clear" onClick={handleClear} >Clear</button>
+      </div></div>
     </>
   );
 }
