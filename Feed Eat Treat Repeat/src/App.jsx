@@ -46,7 +46,7 @@ function App() {
     fetchEntries()
       .then(data => {
         // Extract necessary data from fetched entries and update state
-        const extractedEntries = data.records.map(record => record.fields['Ingredient Name (from Food Item)']);
+        const extractedEntries = data.records.map(record => record.fields['Food']);
         setEntries(extractedEntries);
       })
       .catch(error => {
@@ -60,6 +60,7 @@ function App() {
         <ViewFood
           handleSubmit={handleSubmit}
           entries={entries}
+          setEntries={setEntries}
           addFoodItem={addFoodItem}
         />
       </div>

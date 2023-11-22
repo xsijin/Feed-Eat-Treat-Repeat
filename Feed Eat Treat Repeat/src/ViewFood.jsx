@@ -5,7 +5,7 @@ import MealEntry from "./MealEntry";
 import FoodItem from "./FoodItem";
 import "./ViewFood.css";
 
-export default function ViewFood({ handleSubmit, entries, addFoodItem }) {
+export default function ViewFood({ handleSubmit, entries, addFoodItem, setEntries }) {
   return (
     <>
       <h2>25 Nov 2023</h2> 
@@ -28,7 +28,7 @@ export default function ViewFood({ handleSubmit, entries, addFoodItem }) {
             />
           ))}
         </ul>
-        <MealEntry handleSubmit={handleSubmit} addFoodItem={addFoodItem} />
+        <MealEntry handleSubmit={handleSubmit} addFoodItem={addFoodItem} setEntries={setEntries}/>
       </div>
     </>
   );
