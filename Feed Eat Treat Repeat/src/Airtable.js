@@ -4,7 +4,7 @@ const apiKey = 'patSPU1OYQlMZDonM.94247f8b517d10f9a7b08f0453a524ff90ac510b578338
 const baseURL = `https://api.airtable.com/v0/${baseId}/${tableName}`;
 
 export const fetchEntries = () => {
-  return fetch(`${baseURL}?fields[]=Date+of+Entry&fields[]=MealType&fields[]=Food`, {
+  return fetch(`${baseURL}`, {
     headers: {
       Authorization: `Bearer ${apiKey}`,
     },
