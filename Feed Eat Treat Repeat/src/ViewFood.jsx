@@ -5,7 +5,7 @@ import MealEntry from "./MealEntry";
 import FoodItem from "./FoodItem";
 import "./ViewFood.css";
 
-export default function ViewFood({ handleSubmit, foodList, addFoodItem }) {
+export default function ViewFood({ handleSubmit, entries, addFoodItem }) {
   return (
     <>
       <h2>25 Nov 2023</h2> 
@@ -20,7 +20,7 @@ export default function ViewFood({ handleSubmit, foodList, addFoodItem }) {
       
         <h3 className="flexitem">Feed Eat Treat Repeat</h3>
         <ul>
-          {foodList.map((foodItem, index) => (
+          {entries.map((foodItem, index) => (
             <FoodItem
               key={index}
               foodItem={foodItem} // Pass the whole foodItem array to FoodItem

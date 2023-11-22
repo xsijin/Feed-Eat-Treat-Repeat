@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { fetchEntries } from './Airtable';
 import "./App.css";
 import ViewFood from "./ViewFood";
 import ViewNutrition from "./ViewNutrition";
@@ -6,6 +7,7 @@ import ViewNutrition from "./ViewNutrition";
 function App() {
   const [NutritionData, setNutritionData] = useState("");
   const [NutritionTitle, setNutritionTitle] = useState("");
+  const [entries, setEntries] = useState([]);
   const [foodList, setFoodList] = useState([
     "Greek Yogurt",
     "Almonds",
@@ -40,12 +42,24 @@ function App() {
     setFoodList([...foodList, newFoodItem]);
   }
 
+  useEffect(() => {
+    fetchEntries()
+      .then(data => {
+        // Extract necessary data from fetched entries and update state
+        const extractedEntries = data.records.map(record => record.fields['Ingredient Name (from Food Item)']);
+        setEntries(extractedEntries);
+      })
+      .catch(error => {
+        console.error('Error fetching entries:', error);
+      });
+  }, []);
+
   return (
     <div className="container">
       <div className="item">
         <ViewFood
           handleSubmit={handleSubmit}
-          foodList={foodList}
+          entries={entries}
           addFoodItem={addFoodItem}
         />
       </div>
