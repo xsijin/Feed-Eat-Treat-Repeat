@@ -121,7 +121,7 @@ export default function ViewNutrition({ nutrition, clearNutrition }) {
           Potassium {potassium}
         </div>
 <div style={{ textAlign: 'right' }}>
-        <button className="clear" onClick={handleClear} >Clear</button>
+        <button className="clear" onClick={handleClear}>Clear</button>
       </div></div>
     </>
   );

@@ -3,11 +3,14 @@ import "./App.css";
 import ViewFood from "./ViewFood";
 import ViewNutrition from "./ViewNutrition";
 
-
 function App() {
   const [NutritionData, setNutritionData] = useState("");
   const [NutritionTitle, setNutritionTitle] = useState("");
-  const [foodList, setFoodList] = useState(["Greek Yogurt", "Almonds", "Carrot Sticks"]);
+  const [foodList, setFoodList] = useState([
+    "Greek Yogurt",
+    "Almonds",
+    "Carrot Sticks",
+  ]);
 
   const clearNutrition = () => {
     setNutritionTitle("");
@@ -33,38 +36,52 @@ function App() {
     setNutritionTitle(title);
   };
 
-function addFoodItem(newFoodItem) {
-  setFoodList([...foodList, newFoodItem]);
-}
+  function addFoodItem(newFoodItem) {
+    setFoodList([...foodList, newFoodItem]);
+  }
 
   return (
     <div className="container">
       <div className="item">
-        <ViewFood handleSubmit={handleSubmit} foodList={foodList} addFoodItem={addFoodItem}/>
+        <ViewFood
+          handleSubmit={handleSubmit}
+          foodList={foodList}
+          addFoodItem={addFoodItem}
+        />
       </div>
       <div className="item2">
-         
-        {NutritionData.calories && NutritionData.totalWeight ? (<ViewNutrition nutrition={NutritionData} clearNutrition={clearNutrition} />) : <div className="unavail">No Nutrition Information available.
-        <br />
-        <br />
-        <div className="small">
-        Please click on the information bubble <button
-        className="info"
-      >
-        i
-      </button> to view nutrition information. 
-      
-      <br /><br /><ul>Possible reasons: 
-      
-      <li className="intro">No food item selected.</li>
-      <li className="intro">Food item is not specific enough. Instead of "juice", try entering "apple juice".</li>
-      <li className="intro">No data available for food item.</li>
-      </ul>
-      <br />Nutrition Analysis API powered by <a href="https://www.edamam.com/">Edamam</a>.</div>
-        
-        </div>}
-      
-    </div></div>
+        {NutritionData.calories && NutritionData.totalWeight ? (
+          <ViewNutrition
+            nutrition={NutritionData}
+            clearNutrition={clearNutrition}
+          />
+        ) : (
+          <div className="unavail">
+            No Nutrition Information available.
+            <br />
+            <br />
+            <div className="small">
+              Please click on the information bubble{" "}
+              <button className="info">i</button> to view nutrition information.
+              <br />
+              <br />
+              <ul>
+                Possible reasons for unavailability:
+                <li className="intro">No food item selected.</li>
+                <li className="intro">
+                  Food item is not specific enough. Instead of "juice", try
+                  entering "apple juice".
+                </li>
+                <li className="intro">No data available for food item.</li>
+              </ul>
+              <br />
+              Nutrition Analysis API powered by{" "}
+              <a href="https://www.edamam.com/">Edamam</a>.
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 
