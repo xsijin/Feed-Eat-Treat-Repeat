@@ -31,7 +31,7 @@ export default function ViewFood({ handleSubmit, entries, addFoodItem, setEntrie
             />
           ))}
         </ul>
-        <MealEntry handleSubmit={handleSubmit} addFoodItem={addFoodItem} setEntries={setEntries}/>
+        <MealEntry handleSubmit={handleSubmit} addFoodItem={addFoodItem} setEntries={setEntries} updateID={updateID}/>
       </div>
     </>
   );

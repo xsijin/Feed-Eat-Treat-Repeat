@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchEntries } from './Airtable';
-import { Button } from "@chakra-ui/react";
-import { Input } from "@chakra-ui/react";
+import { Button, Input } from "@chakra-ui/react";
 
 export default function MealEntry(props) {
   const apiKey = import.meta.env.VITE_MY_KEY;
@@ -38,6 +37,7 @@ export default function MealEntry(props) {
             // Update your state with the latest data
             const extractedEntries = data.records.map(record => record.fields['Food']);
             props.setEntries(extractedEntries);
+            props.updateID(data);
           })
           .catch(error => {
             console.error('Error fetching entries:', error);
