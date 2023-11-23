@@ -23,6 +23,22 @@ function App() {
     // Additional clearing steps if needed
   };
 
+  const updateEntries = (updatedData) => {
+    setEntries(updatedData);
+  };
+
+  const updateID = (updatedData) => {
+
+    const updatedFoodToID = {};
+    updatedData.records.forEach((record) => {
+      const id = record.id;
+      const foodItem = record.fields["Food"];
+      updatedFoodToID[foodItem] = id;
+    });
+
+    setFoodItemIdMap(updatedFoodToID);
+  };
+
   useEffect(() => {
     const NutritionUrl = `https://api.edamam.com/api/nutrition-data?app_id=3791ca98&app_key=99274120c12f12224b802f6c3efb5407&nutrition-type=logging&ingr=100g%20${NutritionTitle}`;
 
@@ -119,7 +135,7 @@ function App() {
         } />
 
         {/* Other Routes */}
-        <Route path="/update/:id" element={<UpdateFoodItem />} />
+        <Route path="/update/:id" element={<UpdateFoodItem updateEntries={updateEntries} updateID={updateID}/>} />
         <Route path="/delete/:id" element={<DeleteFoodItem />} />
       </Routes>
   );
