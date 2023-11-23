@@ -5,7 +5,7 @@ import MealEntry from "./MealEntry";
 import FoodItem from "./FoodItem";
 import "./ViewFood.css";
 
-export default function ViewFood({ handleSubmit, entries, addFoodItem, setEntries }) {
+export default function ViewFood({ handleSubmit, entries, addFoodItem, setEntries, foodItemIdMap }) {
   return (
     <>
       <h2>25 Nov 2023</h2> 
@@ -25,6 +25,7 @@ export default function ViewFood({ handleSubmit, entries, addFoodItem, setEntrie
               key={index}
               foodItem={foodItem} // Pass the whole foodItem array to FoodItem
               handleSubmit={handleSubmit}
+              foodItemIdMap={foodItemIdMap}
             />
           ))}
         </ul>

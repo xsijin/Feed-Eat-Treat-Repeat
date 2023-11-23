@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 
-export default function FoodItem({ foodItem, handleSubmit }) {
+export default function FoodItem({ foodItem, handleSubmit, foodItemIdMap }) {
     const [NutritionTitle, setNutritionTitle] = useState("");
 
     const handleClick = (clickedItem) => {
@@ -17,7 +18,8 @@ export default function FoodItem({ foodItem, handleSubmit }) {
         onClick={() => handleClick(foodItem)}
       >
         i
-      </button>
+      </button> {/* Link to the update route with the food item ID */}
+              <Link to={`/update/${foodItemIdMap[foodItem]}`}>Edit</Link>
     </li>
 </>
     );

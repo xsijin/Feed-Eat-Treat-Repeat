@@ -1,13 +1,17 @@
 import { useState, useEffect } from "react";
-import { fetchEntries } from './Airtable';
+import { fetchEntries } from "./Airtable";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import ViewFood from "./ViewFood";
 import ViewNutrition from "./ViewNutrition";
+import UpdateFoodItem from "./UpdateFoodItem";
+import DeleteFoodItem from "./DeleteFoodItem";
 
 function App() {
   const [NutritionData, setNutritionData] = useState("");
   const [NutritionTitle, setNutritionTitle] = useState("");
   const [entries, setEntries] = useState([]);
+  const [foodItemIdMap, setFoodItemIdMap] = useState({});
   const [foodList, setFoodList] = useState([
     "Greek Yogurt",
     "Almonds",
@@ -44,62 +48,81 @@ function App() {
 
   useEffect(() => {
     fetchEntries()
-      .then(data => {
-        // Extract necessary data from fetched entries and update state
-        const extractedEntries = data.records.map(record => record.fields['Food']);
-        setEntries(extractedEntries);
-      })
-      .catch(error => {
-        console.error('Error fetching entries:', error);
+    .then((data) => {
+      const extractedEntries = data.records.map((record) => record.fields["Food"]);
+      setEntries(extractedEntries);
+
+      const newFoodItemIdMap = {};
+      data.records.forEach((record) => {
+        const id = record.id;
+        const foodItem = record.fields["Food"];
+        newFoodItemIdMap[foodItem] = id;
+      });
+
+      setFoodItemIdMap(newFoodItemIdMap); // Update the foodItemIdMap state
+    })
+      .catch((error) => {
+        console.error("Error fetching entries:", error);
       });
   }, []);
 
+
   return (
-    <div className="container">
-      <div className="item">
-        <ViewFood
-          handleSubmit={handleSubmit}
-          entries={entries}
-          setEntries={setEntries}
-          addFoodItem={addFoodItem}
-        />
-      </div>
-      <div className="item2">
-        {NutritionData.calories && NutritionData.totalWeight ? (
-          <ViewNutrition
-            nutrition={NutritionData}
-            clearNutrition={clearNutrition}
-          />
-        ) : (
-          <div className="unavail">
-            No Nutrition Information available.
-            <br />
-            <br />
-            <div className="small">
-              Please click on the information bubble{" "}
-              <button className="info">i</button> to view nutrition information.
-              <br />
-              <br />
-              <ul>
-                Possible reasons for unavailability:
-                <li className="intro">No food item selected.</li>
-                <li className="intro">
-                  Food item is not specific enough. Instead of "juice", try
-                  entering "apple juice".
-                </li>
-                <li className="intro">No data available for food item.</li>
-              </ul>
-              <br />
-              Nutrition Analysis API powered by{" "}
-              <a href="https://www.edamam.com/">Edamam</a>.
+      <Routes>
+        <Route path="/" element={
+          <div className="container">
+            <div className="item">
+              <ViewFood
+                handleSubmit={handleSubmit}
+                entries={entries}
+                setEntries={setEntries}
+                addFoodItem={addFoodItem}
+                foodItemIdMap={foodItemIdMap}
+              />
+            </div>
+            <div className="item2">
+              {NutritionData.calories && NutritionData.totalWeight ? (
+                <ViewNutrition
+                  nutrition={NutritionData}
+                  clearNutrition={clearNutrition}
+                />
+              ) : (
+                <div className="unavail">
+                  No Nutrition Information available.
+                  <br />
+                  <br />
+                  <div className="small">
+                    Please click on the information bubble{" "}
+                    <button className="info">i</button> to view nutrition
+                    information.
+                    <br />
+                    <br />
+                    <ul>
+                      Possible reasons for unavailability:
+                      <li className="intro">No food item selected.</li>
+                      <li className="intro">
+                        Food item is not specific enough. Instead of "juice",
+                        try entering "apple juice".
+                      </li>
+                      <li className="intro">
+                        No data available for food item.
+                      </li>
+                    </ul>
+                    <br />
+                    Nutrition Analysis API powered by{" "}
+                    <a href="https://www.edamam.com/">Edamam</a>.
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-        )}
-      </div>
-    </div>
+        } />
+
+        {/* Other Routes */}
+        <Route path="/update/:id" element={<UpdateFoodItem />} />
+        <Route path="/delete/:id" element={<DeleteFoodItem />} />
+      </Routes>
   );
 }
 
 export default App;
-
-// airtable
