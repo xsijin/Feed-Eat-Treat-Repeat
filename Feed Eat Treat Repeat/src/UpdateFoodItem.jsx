@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { fetchEntries } from "./Airtable";
 
-function UpdateFoodItem() {
-  const { id } = useParams(); // Get the ID from the URL parameter
+function UpdateFoodItem({ updateEntries, updateID }) {
+    const apiKey = import.meta.env.VITE_MY_KEY;
+    const { id } = useParams(); // Get the ID from the URL parameter
+  const navigate = useNavigate();
   const [foodItem, setFoodItem] = useState({});
 
   useEffect(() => {
     fetch(`https://api.airtable.com/v0/app0oXVuGeHq2HRYJ/tbl7xnuDoU34SL2df/${id}`, {
       headers: {
-        Authorization: `Bearer patSPU1OYQlMZDonM.94247f8b517d10f9a7b08f0453a524ff90ac510b578338ad088f2096ff065db8`,
+        Authorization: `Bearer ${apiKey}`,
       },
     })
       .then(response => {
@@ -25,13 +28,58 @@ function UpdateFoodItem() {
       });
   }, [id]);
 
+
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform the update operation using the fetched foodItem details
-    // Add your logic here to update the food item
-  };
 
-  // Your update form rendering with populated data
+      // Construct the payload in the expected format
+  const payload = {
+    fields: {
+      Food: foodItem.Food // Assuming foodItem.Food contains the updated food name
+    }
+  };
+  
+  // Perform the update operation using the fetched foodItem details
+  fetch(`https://api.airtable.com/v0/app0oXVuGeHq2HRYJ/tbl7xnuDoU34SL2df/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Failed to update food item');
+    }
+
+     // If the update is successful, navigate back to the main page ("/")
+     return response.json();
+    })
+    .then(updatedData => {
+        if (updatedData.fields && updatedData.fields.Food) {
+          // Fetch the updated entries again and update the state with the entire list
+          fetchEntries()
+            .then(data => {
+              const extractedEntries = data.records.map(record => record.fields["Food"]);
+              updateEntries(extractedEntries);
+              updateID(data);
+            })
+            .catch(error => {
+              console.error('Error fetching updated entries:', error);
+            })
+            .finally(() => {
+              // Navigate back to the main page regardless of success or error in fetching updated entries
+              navigate('/');
+            });
+        }
+      })
+      .catch(error => {
+        console.error('Error updating food item:', error);
+      });
+};
+
   return (
     <div>
       <h2>Update Food Item</h2>
@@ -40,8 +88,8 @@ function UpdateFoodItem() {
         {/* Update input fields based on your specific Airtable fields */}
         <input
           type="text"
-          value={foodItem.fieldName || ''} // Replace fieldName with your Airtable field
-          onChange={(e) => setFoodItem({ ...foodItem, fieldName: e.target.value })}
+          value={foodItem.Food || ''} // Replace fieldName with your Airtable field
+          onChange={(e) => setFoodItem({ ...foodItem, Food: e.target.value })}
         />
         {/* Other input fields */}
         <button type="submit">Update</button>

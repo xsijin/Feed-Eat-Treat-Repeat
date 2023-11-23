@@ -1,13 +1,50 @@
 import { useState, useEffect } from "react";
+import { fetchEntries } from "./Airtable";
+import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
-export default function FoodItem({ foodItem, handleSubmit, foodItemIdMap }) {
-    const [NutritionTitle, setNutritionTitle] = useState("");
+export default function FoodItem({ entries, foodItem, handleSubmit, foodItemIdMap, updateEntries, updateID }) {
+  const apiKey = import.meta.env.VITE_MY_KEY;
+
+  const [NutritionTitle, setNutritionTitle] = useState("");
 
     const handleClick = (clickedItem) => {
         handleSubmit(clickedItem);
         setNutritionTitle(clickedItem);
       };
+
+      const { id } = useParams(); // Get the ID from the URL parameter
+      
+      const handleDelete = (id) => {
+        // Perform the deletion
+        fetch(`https://api.airtable.com/v0/app0oXVuGeHq2HRYJ/tbl7xnuDoU34SL2df/${id}`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${apiKey}`,
+            },
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to delete food item');
+                }
+                return response.json();
+            })
+            .then(deletedData => {
+                // Update your entries after successful deletion
+                fetchEntries()
+                .then(data => {
+                  const extractedEntries = data.records.map(record => record.fields["Food"]);
+                  updateEntries(extractedEntries);
+                  updateID(data);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching updated entries:', error);
+                    });
+            })
+            .catch(error => {
+                console.error('Error deleting food item:', error);
+            });
+    };
 
     return (
       <>
@@ -19,7 +56,18 @@ export default function FoodItem({ foodItem, handleSubmit, foodItemIdMap }) {
       >
         i
       </button> {/* Link to the update route with the food item ID */}
-              <Link to={`/update/${foodItemIdMap[foodItem]}`}>Edit</Link>
+              <Link to={`/update/${foodItemIdMap[foodItem]}`}>Edit</Link> 
+                {/* Text triggering delete function */}
+                <span
+                    onClick={() => handleDelete(foodItemIdMap[foodItem])}
+                    style={{
+                        color: "red",
+                        cursor: "pointer",
+                        marginLeft: "10px",
+                    }}
+                >
+                    Delete
+                </span>
     </li>
 </>
     );

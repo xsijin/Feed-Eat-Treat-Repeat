@@ -5,7 +5,6 @@ import "./App.css";
 import ViewFood from "./ViewFood";
 import ViewNutrition from "./ViewNutrition";
 import UpdateFoodItem from "./UpdateFoodItem";
-import DeleteFoodItem from "./DeleteFoodItem";
 
 function App() {
   const [NutritionData, setNutritionData] = useState("");
@@ -18,9 +17,27 @@ function App() {
     "Carrot Sticks",
   ]);
 
+  console.log(entries);
+
   const clearNutrition = () => {
     setNutritionTitle("");
     // Additional clearing steps if needed
+  };
+
+  const updateEntries = (updatedData) => {
+    setEntries(updatedData);
+  };
+
+  const updateID = (updatedData) => {
+
+    const updatedFoodToID = {};
+    updatedData.records.forEach((record) => {
+      const id = record.id;
+      const foodItem = record.fields["Food"];
+      updatedFoodToID[foodItem] = id;
+    });
+
+    setFoodItemIdMap(updatedFoodToID);
   };
 
   useEffect(() => {
@@ -58,9 +75,10 @@ function App() {
         const foodItem = record.fields["Food"];
         newFoodItemIdMap[foodItem] = id;
       });
-
       setFoodItemIdMap(newFoodItemIdMap); // Update the foodItemIdMap state
+  
     })
+    
       .catch((error) => {
         console.error("Error fetching entries:", error);
       });
@@ -78,6 +96,8 @@ function App() {
                 setEntries={setEntries}
                 addFoodItem={addFoodItem}
                 foodItemIdMap={foodItemIdMap}
+                updateEntries={updateEntries} 
+                updateID={updateID}
               />
             </div>
             <div className="item2">
@@ -119,8 +139,7 @@ function App() {
         } />
 
         {/* Other Routes */}
-        <Route path="/update/:id" element={<UpdateFoodItem />} />
-        <Route path="/delete/:id" element={<DeleteFoodItem />} />
+        <Route path="/update/:id" element={<UpdateFoodItem updateEntries={updateEntries} updateID={updateID}/>} />
       </Routes>
   );
 }

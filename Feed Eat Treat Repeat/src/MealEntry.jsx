@@ -4,6 +4,8 @@ import { Button } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/react";
 
 export default function MealEntry(props) {
+  const apiKey = import.meta.env.VITE_MY_KEY;
+
     const [NutritionTitle, setNutritionTitle] = useState("");
     const [newFoodItem, setNewFoodItem] = useState("")
 
@@ -14,7 +16,7 @@ export default function MealEntry(props) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer patSPU1OYQlMZDonM.94247f8b517d10f9a7b08f0453a524ff90ac510b578338ad088f2096ff065db8',
+        Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
         fields: {
