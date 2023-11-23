@@ -134,3 +134,13 @@ li {
   text-align: left;
   margin-left: 10px;
 }
+
+.delete {
+  cursor: pointer;
+  margin-left: 2px;
+  display: inline-block;
+}
+
+.delete:hover {
+  color: red;
+}
