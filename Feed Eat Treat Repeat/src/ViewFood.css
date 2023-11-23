@@ -9,6 +9,7 @@
 .flexitem {
     flex: 1;
     background-color: pink;
+    margin-bottom: 7px;
   }
   
 h3 {
