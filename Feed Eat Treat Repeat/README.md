@@ -16,11 +16,11 @@ Inspired by the need to understand and track my child's nutritional intake, espe
 
 PC view - nutrition information is displayed on the right.
 
-<img src="/Feed%20Eat%20Treat%20Repeat/public/pc_view.png/pc_view.png" width="600">
+<img src="/Feed%20Eat%20Treat%20Repeat/public/pc_view.png" width="600">
 
 Mobile-friendly view - nutrition information is displayed below the food list due to narrower mobile screen.
 
-<img src="/Feed%20Eat%20Treat%20Repeat/public/pc_view.png/mobile_view.png" width="600">
+<img src="/Feed%20Eat%20Treat%20Repeat/public/mobile_view.png" width="600">
 
 ## Technologies Used
 
