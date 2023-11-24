@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { fetchEntries } from "./Airtable";
+import { Input } from "@chakra-ui/react";
 
 function UpdateFoodItem({ updateEntries, updateID }) {
     const apiKey = import.meta.env.VITE_MY_KEY;
@@ -86,8 +87,9 @@ function UpdateFoodItem({ updateEntries, updateID }) {
       <form onSubmit={handleSubmit}>
         {/* Form fields pre-filled with foodItem details */}
         {/* Update input fields based on your specific Airtable fields */}
-        <input
+        <Input
           type="text"
+          variant='flushed'
           value={foodItem.Food || ''} // Replace fieldName with your Airtable field
           onChange={(e) => setFoodItem({ ...foodItem, Food: e.target.value })}
         />

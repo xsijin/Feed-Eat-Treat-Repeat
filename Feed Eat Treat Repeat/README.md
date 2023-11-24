@@ -36,7 +36,7 @@ The "Edit"<img src="/Feed%20Eat%20Treat%20Repeat/public/edit.png"> and "Delete"<
 
 Click on "i"<img src="/Feed%20Eat%20Treat%20Repeat/public/info.png"> at the start of each item to view the nutrition information.
 
-Click on "Clear" at the bottom right of nutrition information to reset.
+Click on "Clear"<img src="/Feed%20Eat%20Treat%20Repeat/public/clear.png"> at the bottom right of nutrition information to reset nutrition values.
 
 
 ## Next Steps
@@ -47,21 +47,61 @@ Click on "Clear" at the bottom right of nutrition information to reset.
 - [ ] Include recommended daily intake (based on age of user) to compare with the consumed nutrition intake.
 - [ ] Highlight food items with allergen risk for users to take note.
 - [ ] Improve on the UI.
-- [ ] Add in alert when deleting.
+- [ ] Add in alert confirmation when deleting.
+- [ ] Add in "Back" button in UpdateFoodItem page to cancel the edit request & return to main App without changes.
+
 
 ## API Call
 
-## Favourite API Call
+The API will return nutrition values in a table, similar to nutrition fact labels found on food products.
+
+<img src="/Feed%20Eat%20Treat%20Repeat/public/apireturn.png">
 
 ## Routing Component
 
+App: Main page 
+
+UpdateFoodItem: Edit food item page 
+
 ## Favourite React Component
+
+```
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <Router>
+    <ChakraProvider>
+      <App />
+    </ChakraProvider>
+  </Router>,
+)
+```
 
 ## Biggest Challenge
 
-## Solution
+My biggest challenge was mapping the Airtable ID back to the food item I want to edit/delete for CRUD. Until now, I believe I am still overthinking it. Would love to find ways to make my code more efficient.
 
+```
+  const [foodItemIdMap, setFoodItemIdMap] = useState({});
+```
+
+```
+  const updateID = (updatedData) => {
+
+    const updatedFoodToID = {};
+    updatedData.records.forEach((record) => {
+      const id = record.id;
+      const foodItem = record.fields["Food"];
+      updatedFoodToID[foodItem] = id;
+    });
+
+    setFoodItemIdMap(updatedFoodToID);
+  };
+```
+  
 ## Key Learning / Takeaways
+
+Have a big picture in mind, then code the smaller components.
+
+If the problem is too big, break it down into smaller components.
 
 ## Resources
 
