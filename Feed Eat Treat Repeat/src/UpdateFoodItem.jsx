@@ -22,7 +22,7 @@ function UpdateFoodItem({ updateEntries, updateID }) {
         return response.json();
       })
       .then(data => {
-        setFoodItem(data.fields); // Assuming the data structure from Airtable
+        setFoodItem(data.fields); 
       })
       .catch(error => {
         console.error('Error fetching food item:', error);
@@ -34,10 +34,10 @@ function UpdateFoodItem({ updateEntries, updateID }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-      // Construct the payload in the expected format
+      // Payload to ensure data format consistency
   const payload = {
     fields: {
-      Food: foodItem.Food // Assuming foodItem.Food contains the updated food name
+      Food: foodItem.Food 
     }
   };
   
@@ -60,7 +60,7 @@ function UpdateFoodItem({ updateEntries, updateID }) {
     })
     .then(updatedData => {
         if (updatedData.fields && updatedData.fields.Food) {
-          // Fetch the updated entries again and update the state with the entire list
+          // Update entries & ID after successful update to re-render entries with new data
           fetchEntries()
             .then(data => {
               const extractedEntries = data.records.map(record => record.fields["Food"]);
@@ -85,15 +85,14 @@ function UpdateFoodItem({ updateEntries, updateID }) {
     <div>
       <h2>Update Food Item</h2>
       <form onSubmit={handleSubmit}>
-        {/* Form fields pre-filled with foodItem details */}
-        {/* Update input fields based on your specific Airtable fields */}
+        {/* Input field is pre-filled with original foodItem name that is to be changed */}
         <Input
           type="text"
           variant='flushed'
-          value={foodItem.Food || ''} // Replace fieldName with your Airtable field
+          value={foodItem.Food || ''} 
           onChange={(e) => setFoodItem({ ...foodItem, Food: e.target.value })}
         />
-        {/* Other input fields */}
+
         <button type="submit">Update</button>
       </form>
     </div>

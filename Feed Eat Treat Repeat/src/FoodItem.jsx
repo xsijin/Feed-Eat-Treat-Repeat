@@ -18,7 +18,7 @@ export default function FoodItem({ entries, foodItem, handleSubmit, foodItemIdMa
       const { id } = useParams(); // Get the ID from the URL parameter
       
       const handleDelete = (id) => {
-        // Perform the deletion
+        // Perform the deletion on Airtable
         fetch(`https://api.airtable.com/v0/app0oXVuGeHq2HRYJ/tbl7xnuDoU34SL2df/${id}`, {
             method: 'DELETE',
             headers: {
@@ -32,7 +32,7 @@ export default function FoodItem({ entries, foodItem, handleSubmit, foodItemIdMa
                 return response.json();
             })
             .then(deletedData => {
-                // Update your entries after successful deletion
+                // Update entries & ID after successful deletion to re-render entries
                 fetchEntries()
                 .then(data => {
                   const extractedEntries = data.records.map(record => record.fields["Food"]);
@@ -57,9 +57,12 @@ export default function FoodItem({ entries, foodItem, handleSubmit, foodItemIdMa
         onClick={() => handleClick(foodItem)}
       >
         i
-      </button> {foodItem}  <div className="right">{/* Link to the update route with the food item ID */}
+      </button> {foodItem}  
+      
+      <div className="right">
+        {/* Link to the update route with the food item ID */}
               <Link to={`/update/${foodItemIdMap[foodItem]}`} style={{ display: "inline-block" }}> <LuClipboardEdit /> </Link> 
-                {/* Text triggering delete function */}
+                {/* Delete icon */}
                 <span
                     onClick={() => handleDelete(foodItemIdMap[foodItem])}
                     className="delete"

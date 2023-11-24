@@ -12,7 +12,7 @@ export default function ViewNutrition({ nutrition, clearNutrition }) {
   // Format number to round decimals up when at midpoint i.e. 3.05 -> 3.1
   function formatNumber(number) {
     if (Number.isInteger(number)) {
-      return number.toFixed(0); // For whole numbers, rounds to integers
+      return number.toFixed(0); // For whole numbers, rounds to integers i.e. no .0 decimal place
     } else {
       // Multiply by 10, round to the nearest integer, and then divide by 10 to keep one decimal place
       return (Math.round(number * 10) / 10).toFixed(1);

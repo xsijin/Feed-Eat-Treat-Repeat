@@ -30,11 +30,9 @@ export default function MealEntry(props) {
         return response.json();
       })
       .then(data => {
-        // Update state or trigger a refetch of data from Airtable
-        // For example, you might call a function to refetch entries
+        // Update entries & ID after successful addition to re-render entries with new data
         fetchEntries()
           .then(data => {
-            // Update your state with the latest data
             const extractedEntries = data.records.map(record => record.fields['Food']);
             props.setEntries(extractedEntries);
             props.updateID(data);

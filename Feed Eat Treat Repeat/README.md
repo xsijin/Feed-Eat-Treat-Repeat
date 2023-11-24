@@ -34,21 +34,21 @@ Key in food item to add into the diary.
 
 The "Edit"<img src="/Feed%20Eat%20Treat%20Repeat/public/edit.png"> and "Delete"<img src="/Feed%20Eat%20Treat%20Repeat/public/delete.png"> functions for food items are located on the right of each item.
 
-Click on "i"<img src="/Feed%20Eat%20Treat%20Repeat/public/info.png"> at the start of each item to view the nutrition information.
+Click on "i"<img src="/Feed%20Eat%20Treat%20Repeat/public/info.png"> bullet of each item to view the nutrition information.
 
 Click on "Clear"<img src="/Feed%20Eat%20Treat%20Repeat/public/clear.png"> at the bottom right of nutrition information to reset nutrition values.
 
-
 ## Next Steps
 
+- [ ] Add in alert confirmation when deleting.
+- [ ] Add in "Back" button in UpdateFoodItem page to cancel the edit request & return to main App without changes.
+- [ ] Add in a notification that nutrition information is loading while waiting for API to fetch values.
 - [ ] Split entries for different dates and meals (i.e. breakfast, lunch, dinner, snack.)
 - [ ] Function to sum up the total nutrition values of one meal based on all the food items/ingredients.
 - [ ] Allow users to customize the weight of their food item in order to fetch the nutrition information more accurately. Current nutrition analysis default is set to 100g.
 - [ ] Include recommended daily intake (based on age of user) to compare with the consumed nutrition intake.
 - [ ] Highlight food items with allergen risk for users to take note.
 - [ ] Improve on the UI.
-- [ ] Add in alert confirmation when deleting.
-- [ ] Add in "Back" button in UpdateFoodItem page to cancel the edit request & return to main App without changes.
 
 
 ## API Call
@@ -75,9 +75,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 ```
 
+Reason: clean, sleek, not cluttered with props
+
 ## Biggest Challenge
 
-My biggest challenge was mapping the Airtable ID back to the food item I want to edit/delete for CRUD. Until now, I believe I am still overthinking it. Would love to find ways to make my code more efficient.
+My biggest challenge was mapping the Airtable ID back to the food item I want to edit/delete for CRUD after a new food is added. While the rest of the food items are able to render the correct ID, the newly added food item kept showing 'undefined' ID. Until now, I believe I am still overthinking it. Would love to find ways to make my code more efficient. My code also introduced an issue where 2 food items of the same name may map to the wrong ID.
 
 ```
   const [foodItemIdMap, setFoodItemIdMap] = useState({});
@@ -96,7 +98,19 @@ My biggest challenge was mapping the Airtable ID back to the food item I want to
     setFoodItemIdMap(updatedFoodToID);
   };
 ```
-  
+
+```
+<Route path="/update/:id" element={<UpdateFoodItem updateEntries={updateEntries} updateID={updateID}/>} />
+```
+
+```
+ <Link to={`/update/${foodItemIdMap[foodItem]}`} 
+``` 
+
+```
+<span onClick={() => handleDelete(foodItemIdMap[foodItem])}
+```
+
 ## Key Learning / Takeaways
 
 Have a big picture in mind, then code the smaller components.

@@ -5,7 +5,7 @@ import MealEntry from "./MealEntry";
 import FoodItem from "./FoodItem";
 import "./ViewFood.css";
 
-export default function ViewFood({ handleSubmit, entries, addFoodItem, setEntries, foodItemIdMap, updateEntries, updateID }) {
+export default function ViewFood({ handleSubmit, entries, setEntries, foodItemIdMap, updateEntries, updateID }) {
   return (
     <>
       <h2>Feed Eat Treat Repeat</h2> 
@@ -23,7 +23,7 @@ export default function ViewFood({ handleSubmit, entries, addFoodItem, setEntrie
           {entries.map((foodItem, index) => (
             <FoodItem
               key={index}
-              foodItem={foodItem} // Pass the whole foodItem array to FoodItem
+              foodItem={foodItem} 
               handleSubmit={handleSubmit}
               foodItemIdMap={foodItemIdMap}
               updateEntries={updateEntries} 
@@ -31,7 +31,7 @@ export default function ViewFood({ handleSubmit, entries, addFoodItem, setEntrie
             />
           ))}
         </ul>
-        <MealEntry handleSubmit={handleSubmit} addFoodItem={addFoodItem} setEntries={setEntries} updateID={updateID}/>
+        <MealEntry handleSubmit={handleSubmit} setEntries={setEntries} updateID={updateID}/>
       </div>
     </>
   );

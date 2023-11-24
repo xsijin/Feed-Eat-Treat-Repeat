@@ -11,11 +11,6 @@ function App() {
   const [NutritionTitle, setNutritionTitle] = useState("");
   const [entries, setEntries] = useState([]);
   const [foodItemIdMap, setFoodItemIdMap] = useState({});
-  const [foodList, setFoodList] = useState([
-    "Greek Yogurt",
-    "Almonds",
-    "Carrot Sticks",
-  ]);
 
   console.log(entries);
 
@@ -23,10 +18,12 @@ function App() {
     setNutritionTitle("");
   };
 
+  // function to re-render state of the food list
   const updateEntries = (updatedData) => {
     setEntries(updatedData);
   };
 
+  // function to re-render the ID
   const updateID = (updatedData) => {
 
     const updatedFoodToID = {};
@@ -39,6 +36,7 @@ function App() {
     setFoodItemIdMap(updatedFoodToID);
   };
 
+  // Fetch Nutrition API
   useEffect(() => {
     const NutritionUrl = `https://api.edamam.com/api/nutrition-data?app_id=3791ca98&app_key=99274120c12f12224b802f6c3efb5407&nutrition-type=logging&ingr=100g%20${NutritionTitle}`;
 
@@ -58,10 +56,7 @@ function App() {
     setNutritionTitle(title);
   };
 
-  function addFoodItem(newFoodItem) {
-    setFoodList([...foodList, newFoodItem]);
-  }
-
+  // Fetch Airtable Database API
   useEffect(() => {
     fetchEntries()
     .then((data) => {
@@ -74,7 +69,7 @@ function App() {
         const foodItem = record.fields["Food"];
         newFoodItemIdMap[foodItem] = id;
       });
-      setFoodItemIdMap(newFoodItemIdMap); // Update the foodItemIdMap state
+      setFoodItemIdMap(newFoodItemIdMap); 
   
     })
     
@@ -93,7 +88,6 @@ function App() {
                 handleSubmit={handleSubmit}
                 entries={entries}
                 setEntries={setEntries}
-                addFoodItem={addFoodItem}
                 foodItemIdMap={foodItemIdMap}
                 updateEntries={updateEntries} 
                 updateID={updateID}
@@ -137,7 +131,6 @@ function App() {
           </div>
         } />
 
-        {/* Other Routes */}
         <Route path="/update/:id" element={<UpdateFoodItem updateEntries={updateEntries} updateID={updateID}/>} />
       </Routes>
   );
