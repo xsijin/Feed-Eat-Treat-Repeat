@@ -51,7 +51,7 @@ Click on "Clear"<img src="/Feed%20Eat%20Treat%20Repeat/public/clear.png"> at the
 - [ ] Improve on the UI.
 
 
-## API Call
+## Favourite API Call
 
 The API will return nutrition values in a table, similar to nutrition fact labels found on food products.
 
@@ -75,11 +75,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 ```
 
-Reason: clean, sleek, not cluttered with props
+Reason: clean, sleek, not cluttered with props, straight to the point
 
 ## Biggest Challenge
 
-My biggest challenge was mapping the Airtable ID back to the food item I want to edit/delete for CRUD after a new food is added. While the rest of the food items are able to render the correct ID, the newly added food item kept showing 'undefined' ID. Until now, I believe I am still overthinking it. Would love to find ways to make my code more efficient. My code also introduced an issue where 2 food items of the same name may map to the wrong ID.
+My biggest challenge was mapping the Airtable ID back to the food item I want to edit/delete for CRUD after a new food is added. While the rest of the food items are able to render the correct ID, the newly added food item kept showing 'undefined' ID. Until now, I believe I am still overthinking it. Would love to discuss alternatives to make the code more efficient. It also introduced an issue where 2 food items of the same name may map to the same ID, which causes a conflict on the actual food item to be edited/deleted.
 
 ```
   const [foodItemIdMap, setFoodItemIdMap] = useState({});
@@ -116,6 +116,8 @@ My biggest challenge was mapping the Airtable ID back to the food item I want to
 Have a big picture in mind, then code the smaller components.
 
 If the problem is too big, break it down into smaller components.
+
+Do not be afraid to ask questions, even if the receiving end is an AI.
 
 ## Resources
 
