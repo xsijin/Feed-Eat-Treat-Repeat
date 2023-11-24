@@ -2,7 +2,7 @@
 
 Here's a nutritional food diary that combines meal logging and nutritional analysis. With parents and health-conscious individuals in mind, it serves as a tool to plan meals and as a handy checklist while grocery shopping.
 
-When determining the food item, the API will fetch the closest food item that matches the food name. For example, trying to fetch the nutrition information of "Roti Prata" will result in "Chapati".
+When calling the food item to fetch nutrition values, the API will fetch the closest food item that matches the input food name. For example, trying to fetch the nutrition information of "Roti Prata" will result in "Chapati".
 
 :cherries: Have fun! :carrot:
 
@@ -10,17 +10,17 @@ When determining the food item, the API will fetch the closest food item that ma
 
 The project, titled "Feed Eat Treat Repeat" draws inspiration from the timeless mantra "Live, Laugh, Love, Repeat." We hope to infuse the same spirit of joy into making healthy meals.
 
-Inspired by the need to understand and track my child's nutritional intake, especially in today's fast-paced world, this platform is designed to empower parents with a holistic view of their children's dietary habits. Whether for meal planning, understanding nutrition, or keeping a record of daily food intake, our Food Diary is here to simplify your journey towards healthier eating habits.
+Backed by the need to record and track my child's nutritional intake, this platform is designed to empower parents with a holistic view of their children's dietary habits. Whether for meal planning, understanding nutrition, or keeping a record of daily food intake, our Food Diary is here to simplify your journey towards healthier eating habits.
 
 ## Screenshots
 
-PC view - nutrition information is displayed on the right.
+**PC view** - nutrition information is displayed on the right.
 
-<img src="/Feed%20Eat%20Treat%20Repeat/public/pc_view.png" width="600">
+<img src="/Feed%20Eat%20Treat%20Repeat/public/pc_view.png">
 
-Mobile-friendly view - nutrition information is displayed below the food list due to narrower mobile screen.
+**Mobile-friendly view** - nutrition information is displayed below the food list due to narrower mobile screen.
 
-<img src="/Feed%20Eat%20Treat%20Repeat/public/mobile_view.png" width="600">
+<img src="/Feed%20Eat%20Treat%20Repeat/public/mobile_view.png">
 
 ## Technologies Used
 
@@ -32,9 +32,9 @@ Game link: https://feed-eat-treat-repeat.vercel.app/
 
 Key in food item to add into the diary.
 
-The "Edit" and "Delete" functions for food items are located on the right of each item.
+The "Edit"<img src="/Feed%20Eat%20Treat%20Repeat/public/edit.png"> and "Delete"<img src="/Feed%20Eat%20Treat%20Repeat/public/delete.png"> functions for food items are located on the right of each item.
 
-Click on "i" at the start of each item to view the nutrition information.
+Click on "i"<img src="/Feed%20Eat%20Treat%20Repeat/public/info.png"> at the start of each item to view the nutrition information.
 
 Click on "Clear" at the bottom right of nutrition information to reset.
 
