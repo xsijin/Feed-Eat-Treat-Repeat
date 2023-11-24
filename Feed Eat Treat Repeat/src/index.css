@@ -144,3 +144,9 @@ li {
 .delete:hover {
   color: red;
 }
+
+.right {
+  float: right;
+  display: inline;
+  margin-right: 5px;
+}

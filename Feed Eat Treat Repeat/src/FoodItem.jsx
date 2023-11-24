@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { fetchEntries } from "./Airtable";
 import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import { LuDelete, LuClipboardEdit } from "react-icons/lu";
+import { LuTrash2, LuClipboardEdit } from "react-icons/lu";
 
 
 export default function FoodItem({ entries, foodItem, handleSubmit, foodItemIdMap, updateEntries, updateID }) {
@@ -57,15 +57,15 @@ export default function FoodItem({ entries, foodItem, handleSubmit, foodItemIdMa
         onClick={() => handleClick(foodItem)}
       >
         i
-      </button> {foodItem}  {/* Link to the update route with the food item ID */}
+      </button> {foodItem}  <div className="right">{/* Link to the update route with the food item ID */}
               <Link to={`/update/${foodItemIdMap[foodItem]}`} style={{ display: "inline-block" }}> <LuClipboardEdit /> </Link> 
                 {/* Text triggering delete function */}
                 <span
                     onClick={() => handleDelete(foodItemIdMap[foodItem])}
                     className="delete"
                 >
-                    <LuDelete />
-                </span>
+                    <LuTrash2 />
+                </span></div>
     </li>
 </>
     );
