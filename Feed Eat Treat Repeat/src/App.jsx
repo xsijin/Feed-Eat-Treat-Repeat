@@ -21,7 +21,6 @@ function App() {
 
   const clearNutrition = () => {
     setNutritionTitle("");
-    // Additional clearing steps if needed
   };
 
   const updateEntries = (updatedData) => {
