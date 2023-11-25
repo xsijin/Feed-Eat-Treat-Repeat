@@ -48,7 +48,7 @@ Click on "Clear"<img src="/Feed%20Eat%20Treat%20Repeat/public/clear.png"> at the
 - [ ] Allow users to customize the weight of their food item in order to fetch the nutrition information more accurately. Current nutrition analysis default is set to 100g.
 - [ ] Include recommended daily intake (based on age of user) to compare with the consumed nutrition intake.
 - [ ] Highlight food items with allergen risk for users to take note.
-- [ ] Improve on the UI.
+- [ ] Improve on the UI, create themes (light/dark).
 
 
 ## Favourite API Call
