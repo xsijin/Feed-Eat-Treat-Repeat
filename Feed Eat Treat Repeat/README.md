@@ -122,6 +122,7 @@ Do not be afraid to ask questions, even if the receiving end is an AI.
 ## Resources
 
 - [Edamam](https://www.edamam.com/): API for nutrtition analysis
-- [Airtable](https://airtable.com/app0oXVuGeHq2HRYJ/shrNAt1ACcjkQxAAg): Database for food entries allowing API & CRUD functionality
+- [Airtable](https://airtable.com/app0oXVuGeHq2HRYJ/shrNAt1ACcjkQxAAg): Database for storing food entries allowing API & CRUD functionality
 - [Trello](https://trello.com/invite/b/oB1SgKRV/ATTI3f5d94730f85d98434743a356613b6839038BC90/feed-eat-treat-repeat): Task and project management platform
+- [Bruno](https://www.usebruno.com/): API Client
 - [Icons8](https://icons8.com) - [Nutrition favicon](https://icons8.com/icon/104293/organic-food)
